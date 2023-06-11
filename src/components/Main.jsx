@@ -13,17 +13,12 @@ const Main = () => {
       .then((res) => setStatus(res));
   };
 
-  useEffect(() => {
-    console.log(checked);
-  }, [checked]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch("http://localhost:8080/api/v1/get-flights")
       .then((res) => res.json())
       .then((res) => setData(res));
   };
-
   return (
     <div className="grid">
       <div className="flex justify-center items-center">
@@ -132,7 +127,9 @@ const Main = () => {
                   <p>&#8594;</p>
                   <p>{item.to}</p>
                   <p>{item.price}/-</p>
-                  <button onClick={(e) => console.log(item.flightId)} className="bg-indigo-700 rounded px-3 text-white py-2">
+                  <button
+                    className="bg-indigo-700 rounded px-3 text-white py-2"
+                  >
                     Book
                   </button>
                 </li>
@@ -143,14 +140,10 @@ const Main = () => {
       </div>
       {status && (
         <div className="flex justify-center max-w-6xl">
-            <div className="grid">
-
-          <h1>Booking details</h1>
-          <div className="w-full rounded bg-gray-50 shadow-md">
-
-            
+          <div className="grid">
+            <h1>Booking details</h1>
+            <div className="w-full rounded bg-gray-50 shadow-md">{status.price}</div>
           </div>
-            </div>
         </div>
       )}
     </div>
